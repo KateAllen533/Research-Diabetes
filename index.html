@@ -143,8 +143,20 @@
                             <h3>Proposed Unique Mathematical Algorithm: PCC-GAN-EDD</h3>
                             <p>PCC-GAN-EDD extends CPISO by using a GAN to generate synthetic samples under constraints, augmenting the dataset for optimized sampling and trace detection. The GAN comprises a generator \( G \) producing synthetic patient profiles and a discriminator \( D \) distinguishing real/synthetic while predicting early diabetes risk.</p>
                             
-                            <h4>Formulation</h4>
-                            <p>Let the dataset \( D = \{ (x_i, c_i, y_i) \}_{i=1}^N \), where \( x_i \) are features (e.g., biomarkers), \( c_i = (a_i, f_i, p_i) \) are constraints (age \( a_i \in [7,12] \), family history \( f_i = 0 \), pollution ratio \( p_i \geq \theta \)), and \( y_i \) is the early trace label.</p>
+                            <h4>Mathematical Formulation</h4>
+                            
+                            <p><strong>Notation:</strong></p>
+                            <ul>
+                                <li>\( \mathcal{D} = \{ (x_i, c_i, y_i) \}_{i=1}^N \): Dataset with \( N \) samples</li>
+                                <li>\( x_i \in \mathbb{R}^d \): Feature vector (biomarkers)</li>
+                                <li>\( c_i = (a_i, f_i, p_i) \): Constraint vector (age, family history, pollution)</li>
+                                <li>\( y_i \in \{0,1\} \): Binary early trace label</li>
+                                <li>\( a_i \in [7,12] \): Age constraint (years)</li>
+                                <li>\( f_i = 0 \): Family history constraint (no diabetes)</li>
+                                <li>\( p_i \geq \theta \): Pollution ratio constraint (\(\theta = 100\))</li>
+                            </ul>
+                            
+                            <p>Let the dataset \( \mathcal{D} = \{ (x_i, c_i, y_i) \}_{i=1}^N \), where \( x_i \) are features (e.g., biomarkers), \( c_i = (a_i, f_i, p_i) \) are constraints (age \( a_i \in [7,12] \), family history \( f_i = 0 \), pollution ratio \( p_i \geq \theta \)), and \( y_i \) is the early trace label.</p>
                             
                             <p><strong>Generator \( G(z, c) \)</strong>: Takes noise \( z \sim \mathcal{N}(0,1) \) and conditions \( c \), outputting synthetic \( \hat{x} \). Architecture: MLP with 4 layers (128-256-512- features), conditioned via concatenation.</p>
                             
@@ -155,29 +167,31 @@
                                 \[
                                 \mathcal{L}_{const} = \lambda_1 \max(7 - \hat{a}, 0) + \lambda_1 \max(\hat{a} - 12, 0) + \lambda_2 (\hat{f})^2 + \lambda_3 \max(\theta - \hat{p}, 0)
                                 \]
-                            </div>
-                            <p>where \( \hat{a}, \hat{f}, \hat{p} \) are generated constraints, \( \lambda \) are hyperparameters (e.g., 1.0, 10.0, 1.0). This quadratic/hinge penalty ensures hard adherence, a novel mechanism not found in prior GANs.</p>
+                        </div>
+                            <p>where \( \hat{a} \in \mathbb{R} \), \( \hat{f} \in \mathbb{R} \), and \( \hat{p} \in \mathbb{R}^+ \) are generated constraint variables, and \( \lambda_1, \lambda_2, \lambda_3 \) are hyperparameters (e.g., 1.0, 10.0, 1.0). This quadratic/hinge penalty ensures hard adherence, a novel mechanism not found in prior GANs.</p>
                             
                             <p><strong>Total Generator Loss</strong>:</p>
                             <div class="math-formula">
                                 \[
-                                \mathcal{L}_G = -\mathbb{E}_{z} [D(G(z,c))] + \alpha \mathcal{L}_{BCE}(D(G(z,c))_{risk}, y) + \beta \mathcal{L}_{const}
+                                \mathcal{L}_G = -\mathbb{E}_{z \sim \mathcal{N}(0,I)} [D(G(z,c))] + \alpha \mathcal{L}_{BCE}(D(G(z,c))_{risk}, y) + \beta \mathcal{L}_{const}
                                 \]
-                    </div>
+                        </div>
+                            <p>where \( \alpha, \beta > 0 \) are weighting hyperparameters, and \( \mathcal{L}_{BCE} \) is the binary cross-entropy loss.</p>
                     
                             <p><strong>Discriminator Loss</strong>:</p>
                             <div class="math-formula">
                                 \[
-                                \mathcal{L}_D = -\mathbb{E}_x [\log D(x,c)] - \mathbb{E}_z [\log (1 - D(G(z,c)))] + \gamma \mathcal{L}_{BCE}(D(x,c)_{risk}, y)
+                                \mathcal{L}_D = -\mathbb{E}_{(x,c) \sim p_{data}} [\log D(x,c)] - \mathbb{E}_{z \sim \mathcal{N}(0,I)} [\log (1 - D(G(z,c)))] + \gamma \mathcal{L}_{BCE}(D(x,c)_{risk}, y)
                                 \]
-                    </div>
+                        </div>
+                            <p>where \( \gamma > 0 \) is a weighting hyperparameter, and \( p_{data} \) is the data distribution.</p>
 
                             <p>Pollution \( p_i \) is normalized and embedded as a continuous condition, modulating latent space via FiLM layers for environmental sensitivity.</p>
                             
                             <p><strong>Training</strong>: Alternate G/D updates over 100 epochs, batch size 64, ADAM optimizer (lr=0.0002). Post-generation, apply CPISO to the augmented dataset for final sampling.</p>
                             
                             <p><strong>Uniqueness</strong>: The constraint loss and pollution-conditioned multi-task discrimination represent a unique calculation, unverifiable in publications or government sources, enabling generation of compliant synthetic data for trace amplification.</p>
-                        </section>
+        </section>
 
                         <section class="uniqueness-section">
                             <h3>Uniqueness Definition</h3>
@@ -196,8 +210,8 @@
                                 \[
                                 \logit(P(y_i=1)) = \beta_0 + \beta_1 a_i + \beta_2 p_i + \beta_3 \hat{x}_i + u_d + \epsilon_i
                                 \]
-                            </div>
-                            <p>Simulated: Original N=500, augmented to 1000. GLMM yields \(\beta_2 = 0.018\) (p<0.001), odds ratio 1.02 per AQI, AIC=110.3 (vs. 120.5 baseline).</p>
+                    </div>
+                            <p>Simulated: Original \(N=500\), augmented to \(N=1000\). GLMM yields \(\beta_2 = 0.018\) (\(p<0.001\)), odds ratio \(1.02\) per AQI, \(\text{AIC}=110.3\) (vs. \(120.5\) baseline).</p>
                         </section>
 
                         <section class="implementation-section">
