@@ -1,38 +1,39 @@
-# Research Publications - Algorithms & Bioinformatics
+# Research Publications
 
-A modern, responsive academic website for publishing research in algorithms and bioinformatics. Built with HTML5, CSS3, and vanilla JavaScript, designed to showcase academic research with a professional and clean interface.
+Mathematical algorithms for environmental health and pediatric diabetes research by Kate D, Senior Researcher & R&D Scientist.
 
-## 🌟 Features
+## Publication
 
-- **Modern Academic Design**: Clean, professional layout optimized for research publications
-- **Responsive Layout**: Mobile-first design that works on all devices
-- **Interactive Elements**: Smooth animations, filtering, and dynamic content
-- **Publication Management**: Easy-to-update publication listings with filtering capabilities
-- **Research Focus**: Specialized sections for algorithms and bioinformatics research
-- **Contact System**: Built-in contact form for research inquiries
-- **SEO Optimized**: Proper meta tags and semantic HTML structure
+**Novel Mathematical Algorithm Integrating GAN for Constrained Sampling in Pediatric Diabetes Datasets: Detecting Early Traces Amid Environmental Constraints**
 
-## 🚀 Quick Start
+This repository contains the complete publication including:
+- Abstract and Introduction
+- Literature Review and Comparative Analysis
+- Proposed Mathematical Algorithm (PCC-GAN-EDD)
+- Implementation Code
+- Statistical Model Examples
+- Application and Justification
 
-### 1. Clone the Repository
+## GitHub Pages Setup
 
-```bash
-git clone https://github.com/yourusername/research-publications.git
-cd research-publications
-```
+This repository is configured to be hosted on GitHub Pages. To set it up:
 
+1. Push this repository to GitHub
+2. Go to your repository settings
+3. Navigate to "Pages" in the left sidebar
+4. Under "Source", select "Deploy from a branch"
+5. Choose "main" branch and "/ (root)" folder
+6. Click "Save"
 
+Your publication will be available at: `https://yourusername.github.io/research-publications`
 
-## 📞 Support
+## Files
 
-For questions or support:
+- `index.html` - Main publication page
+- `styles.css` - Styling for the publication
+- `script.js` - Interactive functionality
+- `README.md` - This file
 
-- **Email**: @KateAllen533
-- **GitHub**: Create an issue in the repository
-- **Documentation**: Check this README and inline code comments
+## Research Focus
 
----
-
-**Built with ❤️ for the academic research community**
-
-*Last updated: August 2024*
+The publication presents a unique hybrid algorithm combining Constrained Pollution-Integrated Sampling Optimization (CPISO) with a novel Generative Adversarial Network (GAN) framework for early diabetes detection in pediatric populations under environmental constraints.
