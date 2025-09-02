@@ -505,6 +505,42 @@ h1, h2, h3, h4, h5, h6 {
     width: 20px;
 }
 
+.contact-services {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-accent);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.contact-services h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.contact-services ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-services li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contact-services li:last-child {
+    border-bottom: none;
+}
+
+.contact-services li::before {
+    content: "✓";
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
 .contact-form {
     background: var(--bg-secondary);
     padding: 2rem;
