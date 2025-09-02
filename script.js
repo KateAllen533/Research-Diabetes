@@ -1,5 +1,18 @@
 // Research Publications Website JavaScript
 
+// Escape HTML meta-characters in a string
+function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, function(match) {
+        switch (match) {
+            case "&": return "&amp;";
+            case "<": return "&lt;";
+            case ">": return "&gt;";
+            case '"': return "&quot;";
+            case "'": return "&#39;";
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initSmoothScrolling();
@@ -350,7 +363,8 @@ function initCodeHighlighting() {
     const codeBlocks = document.querySelectorAll('.code-block code');
     
     codeBlocks.forEach(block => {
-        const code = block.textContent;
+        // Escape HTML in code text before highlighting
+        const code = escapeHtml(block.textContent);
         
         // Simple syntax highlighting for the demo code
         const highlightedCode = code
