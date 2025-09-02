@@ -1101,11 +1101,34 @@ html {
     background: var(--bg-accent);
     border-radius: var(--radius);
     border: 1px solid var(--border-color);
+    overflow-x: auto;
 }
 
 .math-formula img {
     max-width: 100%;
     height: auto;
+}
+
+/* MathJax styling */
+.MathJax {
+    font-size: 1.1em !important;
+}
+
+.MathJax_Display {
+    margin: 1.5rem 0 !important;
+}
+
+/* Inline math styling */
+mjx-container {
+    display: inline-block;
+    margin: 0 0.2em;
+}
+
+/* Display math styling */
+mjx-container[display="true"] {
+    display: block;
+    text-align: center;
+    margin: 1.5rem 0;
 }
 
 .pub-footer {

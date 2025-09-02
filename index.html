@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- MathJax for mathematical formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <header class="header">
@@ -62,7 +79,7 @@
                             <p>Pediatric diabetes, especially type 1 (T1D), demands early detection to avert complications, with air pollution emerging as a key environmental risk factor exacerbating oxidative stress and insulin dysfunction in children. Government data from sources like the EPA define high-pollution districts via metrics such as PM2.5 >12 μg/m³ or AQI >100, exemplified by areas like Bakersfield, CA. Constrained sampling—focusing on ages 7-12, no familial diabetes history, and high-pollution residency—remains challenging, with current methods lacking integration of generative techniques for data augmentation under strict bounds.</p>
                             
                             <p>Building on the CPISO MILP framework, this work embeds a complex GAN-based algorithm, PCC-GAN-EDD, to generate synthetic data compliant with constraints, enabling robust trace identification. Extensive searches confirm its uniqueness: No prior GAN models integrate pollution as a conditioning variable with hard constraint penalties for pediatric diabetes sampling, distinguishing it from general GAN applications in diabetes data synthesis.</p>
-                        </section>
+        </section>
 
                         <section class="literature-section">
                             <h3>Literature Review and Comparative Analysis of Existing Algorithms</h3>
@@ -186,8 +203,8 @@
                         <section class="implementation-section">
                             <h3>Python Implementation</h3>
                             <p>Python Snippet for PCC-GAN-EDD (using PyTorch):</p>
-                            <div class="code-block-large">
-                                <div class="code-header">
+                        <div class="code-block-large">
+                            <div class="code-header">
                                     <span class="code-title">PCC-GAN-EDD Implementation</span>
                             </div>
                             <pre><code>import torch
@@ -242,7 +259,7 @@ for epoch in range(100):
         d_fake = D(fake_x, real_c)
         # Compute losses including constraint_loss(fake_constraints)
         # Update D and G</code></pre>
-                            </div>
+                        </div>
                         </section>
 
                         <section class="application-section">
@@ -254,14 +271,14 @@ for epoch in range(100):
                             <h3>Conclusion</h3>
                             <p>PCC-GAN-EDD pioneers a GAN-integrated framework for pediatric diabetes, offering unique, constraint-aware generation for enhanced early detection. Future extensions include real-world validation.</p>
                         </section>
-                    </div>
-
+                            </div>
+                            
                     <footer class="pub-footer">
                         <div class="pub-links">
                             <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> Full Paper</a>
                             <a href="#" class="pub-link"><i class="fab fa-github"></i> Implementation Code</a>
                             <a href="#" class="pub-link"><i class="fas fa-download"></i> PDF Download</a>
-                        </div>
+                                </div>
                     </footer>
                 </article>
             </div>
