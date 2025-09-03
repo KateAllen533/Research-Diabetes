@@ -1,7 +1,7 @@
 # Research Publications
 
 Mathematical algorithms for environmental health and pediatric diabetes research by Kate D, Senior Researcher & R&D Scientist.
-
+Feel free to add any research or suggestions to support such concept
 ## Publication
 
 **Novel Mathematical Algorithm Integrating GAN for Constrained Sampling in Pediatric Diabetes Datasets: Detecting Early Traces Amid Environmental Constraints**
